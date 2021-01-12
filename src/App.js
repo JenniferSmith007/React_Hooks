@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import { useState } from "react";
+import HomePage from "./components/HomePage";
 function App() {
+  const [itemCurrentlyOnSale, setItemCurrentlyOnSale] = useState("A hammer");
+  const [editable, setEditable] = useState(true);
+  const toggleEditSaleItem = (event) => setEditable(!editable);
+  const handleItemCurrentlyOnSaleChange = (event) => {
+    const itemCurrentlyOnSale = event.target.value;
+    setItemCurrentlyOnSale(itemCurrentlyOnSale);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <HomePage
+        saleItem={itemCurrentlyOnSale}
+        editable={editable}
+        toggleEditSaleItem={toggleEditSaleItem}
+        handleItemCurrentlyOnSaleChange={handleItemCurrentlyOnSaleChange}
+      />
     </div>
   );
 }
